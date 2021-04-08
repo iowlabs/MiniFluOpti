@@ -159,7 +159,24 @@ GenerateClassCluster=0
 DocumentUniqueId=LRUDHCIW
 
 [Document8]
-DocumentPath=PCB1.PcbDoc
+DocumentPath=..\..\..\2020_05_26-FluOpti\3 - Hardware\FOdriver_V2.0\ADC.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=10
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=MWDPGWSJ
+
+[Document9]
+DocumentPath=..\..\..\2020_05_26-FluOpti\3 - Hardware\FOdriver_V2.0\PCB1.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -173,7 +190,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=XHLAUOER
+DocumentUniqueId=XJOLXDIU
 
 [Configuration1]
 Name=Default Configuration
