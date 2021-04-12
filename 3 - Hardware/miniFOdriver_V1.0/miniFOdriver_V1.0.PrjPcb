@@ -159,7 +159,7 @@ GenerateClassCluster=0
 DocumentUniqueId=LRUDHCIW
 
 [Document8]
-DocumentPath=..\..\..\2020_05_26-FluOpti\3 - Hardware\FOdriver_V2.0\ADC.SchDoc
+DocumentPath=ADC.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -173,7 +173,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=MWDPGWSJ
+DocumentUniqueId=QENTKOEV
 
 [Document9]
 DocumentPath=..\..\..\2020_05_26-FluOpti\3 - Hardware\FOdriver_V2.0\PCB1.PcbDoc
@@ -562,7 +562,7 @@ OutputDefault12=0
 [OutputGroup6]
 Name=Report Outputs
 Description=
-TargetPrinter=CutePDF Writer
+TargetPrinter=Brother HL-1200 series
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintJobKind=1|PrintWhat=1
 OutputType1=SimpleBOM
 OutputName1=Simple BOM
@@ -592,13 +592,13 @@ Configuration4_Item1=CaptionAsName
 Configuration4_Name2=Filter
 Configuration4_Item2=545046300E5446696C74657257726170706572000D46696C7465722E416374697665090F46696C7465722E43726974657269610A04000000000000000000
 Configuration4_Name3=General
-Configuration4_Item3=OpenExported=False|AddToProject=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePCBData=True|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|BatchMode=5|FormWidth=1423|FormHeight=989|SupplierProdQty=1000|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>
+Configuration4_Item3=OpenExported=True|AddToProject=False|ForceFit=False|NotFitted=False|Database=False|DatabasePriority=False|IncludePCBData=True|IncludeVaultData=False|IncludeAlternatives=False|ShowExportOptions=True|TemplateFilename=|BatchMode=5|FormWidth=1423|FormHeight=989|SupplierProdQty=10|SupplierAutoQty=False|SupplierUseCachedPricing=False|SupplierCurrency=<none>
 Configuration4_Name4=GroupOrder
 Configuration4_Item4=Supplier Part Number 1=True|Comment=True|Footprint=True
 Configuration4_Name5=SortOrder
 Configuration4_Item5=Supplier Subtotal 1=Down
 Configuration4_Name6=VisibleOrder
-Configuration4_Item6=Comment=43|Description=115|Designator=152|Quantity=20|Manufacturer=61|Manufacturer Part Number=52|Supplier 1=20|Supplier Part Number 1=48|Supplier Unit Price 1=51|Supplier Subtotal 1=53
+Configuration4_Item6=Comment=43|Description=115|Designator=152|Quantity=57|Manufacturer=53|Manufacturer Part Number=45|Supplier 1=17|Supplier Part Number 1=42|Supplier Unit Price 1=45|Supplier Subtotal 1=46
 OutputType5=ComponentCrossReference
 OutputName5=Component Cross Reference Report
 OutputDocumentPath5=
