@@ -18,7 +18,7 @@ incluye un controlador de heater y un par de canales de lectura de sensores de t
 * Protocolo de control: I2C
  
 Dependencias:
-* Generador de PWMs PCA2968
+* Generador de PWMs PCA9685
 * Drivers de corriente IRF740
 * Lector de termistor MAX6682
 * Reguladores de voltaje
