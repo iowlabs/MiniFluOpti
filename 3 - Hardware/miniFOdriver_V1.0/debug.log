@@ -3415,3 +3415,8 @@
 [1206/231305:ERROR:cache_util_win.cc(20)] Unable to move the cache: 5
 [1206/231305:ERROR:cache_util.cc(134)] Unable to move cache folder C:\ProgramData\Altium\Altium Designer {BA141485-E006-414F-A26B-FD9AEE991401}\BrowserCache to C:\ProgramData\Altium\Altium Designer {BA141485-E006-414F-A26B-FD9AEE991401}\old_BrowserCache_000
 [1206/231305:ERROR:cache_creator.cc(129)] Unable to create cache
+[0416/141732:INFO:CONSOLE(0)] "The source list for Content Security Policy directive 'script-src' contains an invalid source: ''report-sample''. It will be ignored.", source: https://www.altium.com/ad-start (0)
+[0416/141732:INFO:CONSOLE(0)] "The source list for Content Security Policy directive 'style-src' contains an invalid source: ''report-sample''. It will be ignored.", source: https://www.altium.com/ad-start (0)
+[0416/141732:INFO:CONSOLE(0)] "Unrecognized Content-Security-Policy directive 'worker-src'.
+", source: https://www.altium.com/ad-start (0)
+[0416/142542:WARNING:dns_config_service_win.cc(665)] Failed to read DnsConfig.
