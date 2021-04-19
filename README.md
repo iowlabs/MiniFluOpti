@@ -1,9 +1,8 @@
 # MiniFluOpti
 
 Versión mini del proyecto FluOpti. Desarrollo conjunto con equipo docente del Instituto de Ingeniería Biológica UC. 
-Este proyecto consiste en un controlador de LEDs configurable por I2C. La placa controla por señales PWM 4 canales 
-distintos, para poder controlar 4 grupos de LEDs distintos: rojos, verde, azul y blanco. Adicionalmente la placa 
-incluye un controlador de heater y un par de canales de lectura de sensores de temperatura del tipo termistor.
+Este proyecto consiste en un controlador de LEDs configurable por I2C. La placa controla 4 canales controladores de LEDs, por medio de señales PWM generadas *on-board*. Los grupos de LEDs considerado para esta versión son: rojos, verde, azul y blanco. Adicionalmente la placa 
+incluye un controlador de *heater* y un par de canales de lectura de sensores de temperatura del tipo termistor.
 
 
 ## Características:
