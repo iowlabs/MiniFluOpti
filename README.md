@@ -11,14 +11,15 @@ incluye un controlador de *heater* y un par de canales de lectura de sensores de
 * 4 Canales de salida LEDs: Rojo, Verde, Azul, Blanco.
 * 1 Controlador de heater. Max: 12[V] - 3[A]
 * 2 Canales de lector de termistor.
-* Voltaje de salida para alimentar Rpi 5[V] 2.5[A]
+* Voltaje de salida para alimentar Rpi 5[V] 2.5[A] (Raspy 3b+)
 * Voltaje en placa 3.3[V] para componentes digitales.
 * Voltajes disponibles: 3.3[V] 5[V], 9[V] y 12[V]
-* Protocolo de control: I2C
+* Protocolo de control: I2C (deseado)
  
 Dependencias:
 * Generador de PWMs PCA9685
 * Drivers de corriente IRF740
+* Drivers de baja corriente (500mA) ULN2803A
 * Lector de termistor MAX6682
 * Reguladores de voltaje
 * Conversores DC-DC
