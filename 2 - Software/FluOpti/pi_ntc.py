@@ -21,10 +21,11 @@ This module read of an NTC temperature sensor through the integrated MAX6682
 
 # ----- Imports ---------------
 import spidev
+import time
 
 # ----- Global Variables ---------------
 DEVICE = 0
-
+BYTES = 2
 
 class pi_ntc():
   def __init__(self):
@@ -43,18 +44,26 @@ class pi_ntc():
   def get_temp(self,ch):
     #read temp from sensor 1
     if ch in [0,1]:
-      self.data = spi_sensors[ch].readbytes(2)
+      #print("reading 2 bytes")
+      self.data = self.spi_sensors[ch].readbytes(BYTES)
+      print(f"datos recibidos: d1:{self.data[0]}, d2:{self.data[1]}")
     #get the rigth bits
     self.data_bites = "{0:0>8b}".format(self.data[0])+"{0:0>8b}".format(self.data[1])
-    #opcion1
-    self.sig      = self.data_bites[0]
-    self.integer  = self.data_bites[1:8]
-    self.decimal  = self.data_bites[8:11]
+    #opcion1    print()
+    #self.sig      = self.data_bites[0]
+    #self.integer  = self.data_bites[1:8]
+    #self.decimal  = self.data_bites[8:11]
+    
     #opcion2
-    #self.sig      = self.data_bites[4]
-    #self.integer  = self.data_bites[5:12]
-    #self.decimal  = self.data_bites[12:15]
-
+    self.sig      = self.data_bites[3]
+    self.integer  = self.data_bites[4:11]
+    self.decimal  = self.data_bites[11:14]
+    
+    #print(f"signo : {self.sig}")
+    #print(f"entero: {self.integer}")
+    #print(f"decimal:{self.decimal}")
+    print(self.data_bites)
+ 
     temp = (1-2*int(self.sig,2) ) * int(self.integer,2)+int(self.decimal,2)*0.125
     return temp
   
@@ -77,8 +86,10 @@ if __name__ == '__main__':
 
   print('Reading temps')
   print('Reading CH0:')
-  print(ntc.get_temps(0))
-  print('Reading CH1:')
-  print(ntc.get_temps(1))
-  print('Reading both:')
-  print(ntc.get_temps())
+  while 1:
+      print(ntc.get_temps(0))
+      time.sleep(2)
+  #print('Reading CH1:')
+  #print(ntc.get_temps(1))
+  #print('Reading both:')
+  #print(ntc.get_temps())
