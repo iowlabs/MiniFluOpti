@@ -1,7 +1,7 @@
 import io
 import time
 import picamera
-from base_camera import BaseCamera
+from FluOpti.base_camera import BaseCamera
 
 camera = picamera.PiCamera()
 
@@ -31,4 +31,3 @@ class Camera(BaseCamera):
         camera.shutter_speed = config['exposure']
         time.sleep(2)
         camera.capture(route, quality=quality)
-        camera.resolution = (320, 240)
