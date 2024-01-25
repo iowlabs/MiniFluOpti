@@ -39,20 +39,18 @@ side_thick = 2; //side support thickness
 bottom_thick = 1; // bottom support thickness
 back_thick = 2; // back support thickness
 
-scw_r = 1.5/2;   // camera screw radious
-scw_b = 2;  // screw hole bottom distance
-scw_s = 1.8; // screw hole side distance
+sup_x_error = 0.5; // camera support error in x axis.
 
 // ** Base holder parameters **
 
 sca_thick_up = 3; // holder scafold thickness
 sca_thick_side = 3; // holder scafold thickness
 sca_thick_down = 2; // holder scafold thickness
-sca_deep = 10;  // holder scafold back deep, it have to be shorter than the distance to the screws in the camera PCB (14 mm aprox) plus camera hoder "back_thick" parameter.
+sca_deep = 14;  // holder scafold back deep, it have to be shorter than the distance to the screws in the camera PCB (14 mm aprox) plus camera hoder "back_thick" parameter. We use 10 for WS and HQ camera.
 sca_arms_width = 11; // holder scafold arms width
 
 sca_arms_space_x = 1;  // space attach relaxation in x axis
-sca_arms_space_y = 15;  // space attach relaxation in y axis (deep of the space)
+sca_arms_space_y = 10;  // space attach relaxation in y axis (deep of the space)
 
 ts_x = 10; // triangular supports x size
 ts_y = 7;  // triangular supports y size
@@ -108,10 +106,10 @@ rrei = r_int-re_rfei;// ring enclosure internal radius
 
 //for the diffusor holder
 dh_zt = 2; // difusor holder z thickness
-dh_sheet = 2.5; // difusor holder sheet in r axis to support the difussor.
+dh_sheet = 2.5; // external difusor holder sheet in r axis to support the difussor.
 
-dhi_sheet = 2; // inner difusor holder sheet in r axis to support the difussor.
-dhi_h = 4; // inner border height
+dhi_sheet = 1; // inner difusor holder sheet in r axis to support the difussor.
+dhi_h = 0; // inner border height
 dhi_rt = 1; // inner diffusor holder tickiness in r axis.
 
 /////////////////////
@@ -120,34 +118,67 @@ dhi_rt = 1; // inner diffusor holder tickiness in r axis.
 ////////////////////////////////
 // Waveshare Chinesse camera //
 ///////////////////////////////
-waveshare_cam_x=32.2 + 1; // 1mm of error
+waveshare_cam_x=32.2; // 1mm of error
 waveshare_cam_y=32.2; 
 waveshare_cam_z=1.5*1.1;//thickness
 WS_hold_x = 5.1 - 0.3;    // space between border and cable conector. 0.3 the security factor
 WS_hold_y = 4.5 - 0.3;  // space between border and resistor. 0.3 the security factor
+WS_lens_y = waveshare_cam_y/2; // distance of the center of the lens to the bottom of the PCB (the side where cable is conected)
 
+WS_scw_r = 1.5/2;   // camera screw radious
 WS_scw_b = 2;  // distance from bottom to screw hole center
 WS_scw_s = 2; // distance from side to screw hole center
+
 ///////////////////
 // RPI V2 camera //
 ///////////////////
 
-RPIV2_cam_x = 25 + 1 ; // 1mm of error
+RPIV2_cam_x = 25 ; // PCB size in x axis
 RPIV2_cam_y = 24; 
 RPIV2_cam_z = 1 + 0.1; // PCB thickness, 0.1 mm of error
-RPIV2_connec_x = 22; // cable conector length
-RPIV2_connec_z = 2.7+ 0.1; // cable conector thikness, 0.1 mm error
+
 
 RPIV2_sensor_x = 8.5 + 0.5; // sensor base length (8.5 mm) or adaptor lenght + 0.5 mm error. For some reason use 16.
+RPIV2_sensor_y = 8.5; //
+RPIV2_sensor_bottom = 5; // distance from sensor square to PCB bottom (the side with the cable)
 
 V2_hold_x =(RPIV2_cam_x - RPIV2_sensor_x)/2 - 0.3;    // space between camera border and sensor base. 0.3 the security factor
 V2_hold_y = 12.5 - 0.2;  // space between border and PCB first obstacle (sensor base or electronic componentes). 0.2 security value. Use value = 12.5 to attach with screws or 7 to not use them.
+V2_lens_y = RPIV2_sensor_y/2 + RPIV2_sensor_bottom; // distance of the center of the lens to the bottom of the PCB (the side with the cable)
 
-V2_scw_b = 9.25;  // distance from bottom to screw hole center
-V2_scw_s = 2; // distance from side to screw hole center
+V2_scw_r = 1;   // camera screw radious (M2)
+V2_scw_b = 9.2;  // distance from bottom to screw hole center
+V2_scw_s = 1.75; // distance from side to screw hole center.
+V2_scw_f = 2; // distance from front (opposite side of the cable connector) to screw hole center
 
+V2_cch = 2.8; // cable conector thickness
+V2_ccx = 22; // cable conector wide (x axis)
+V2_ccy = 5.6 + 0.2; // cable conector deep (y axis). 0.2 looseness.
 
-module make_chb(scw_y,screw_x,scafold_y, LRS){
+V2_iss = 16; // inter screw free space in x axis (It has to be free for PCB componentes).
+
+///////////////////
+// RPI HQ camera //
+///////////////////
+
+HQ_cam_x = 38; // wide
+HQ_cam_y = 38;  // deep
+HQ_cam_z = 1.5; // PCB thickness
+
+r_scw_adapt = 1; // Screw hole adaptor for M2 screws
+
+HQ_hold_x = 7.2 - 0.3;    // space between border and camera base. 0.3 the security factor
+HQ_hold_y = 7.3 - 0.3;  // space between border and first resistor. 0.3 the security factor
+HQ_lens_y = HQ_cam_y/2; // distance of the center of the lens to the bottom of the PCB (the side where cable is conected)
+
+HQ_scw_r = 2.5/2;   // camera screw radious (M2.5)
+HQ_scw_b = 2.5 + HQ_scw_r ;  // distance from bottom to screw hole center
+HQ_scw_s = 2.5 + HQ_scw_r; // distance from side to screw hole center    
+
+HQ_blr = 35/2; //Lens base radious in the PCB
+HQ_cch = 2.5; // cable conector heigh
+
+module make_chb(scw_r,scw_y,screw_x,scafold_y, LRS){
     // to make the camera holder base inside the camera_holder_base module
     union(){
     difference(){
@@ -159,7 +190,7 @@ module make_chb(scw_y,screw_x,scafold_y, LRS){
         // central square down hole
         translate([0,sca_deep/2,scafold_z-holder_z])
         difference(){
-        cube([scafold_x - 2*sca_arms_width,scafold_y - sca_deep,scafold_z], center=true);
+            cube([scafold_x - 2*sca_arms_width,scafold_y - sca_deep,scafold_z], center=true);
         // triangular support left
             translate([-scafold_x/2 + sca_arms_width,(-scafold_y + sca_deep)/2,0])
             linear_extrude(height = scafold_x - 2*sca_arms_width, center = true, convexity = 10, twist = 0)
@@ -195,12 +226,12 @@ module make_chb(scw_y,screw_x,scafold_y, LRS){
         scw_h = sca_thick_down; 
         
         for (a =[screw_x,-screw_x]){
-            translate([a,-scafold_y/2+      scw_r+scw_y,(scafold_z-scw_h)/2])
+            translate([a,-scafold_y/2+scw_y,(scafold_z-scw_h)/2])
         //(scafold_z-scw_h)/2
             cylinder(h=scw_h, r=scw_r, $fn                  =120, center =true);
         }
     }
-    
+     
     if(LRS == 1){
         translate([scafold_x/2,scafold_y/2-CCFB,scafold_z/2])
         led_ring_support();
@@ -218,31 +249,50 @@ module cam_holder_base(camera, LRS) {
     // it creates the camera holder base based on the specified camera
     
     if(camera == "waveshare"){
-            cam_x = waveshare_cam_x;
-            cam_y = waveshare_cam_y;
-            scw_x = WS_scw_s + side_thick;
-            scw_y = WS_scw_b + back_thick;
-            
-            support_x = cam_x+2*side_thick; 
-            screw_x = support_x/2-scw_r-                  scw_x;
-            
-            scafold_y = scafold_y + cam_y/2;
+        cam_x = waveshare_cam_x;
+        cam_y = waveshare_cam_y;
+        scw_x = WS_scw_s + side_thick;
+        scw_y = WS_scw_b + back_thick;
+        scw_r = WS_scw_r;
+    
+        support_x = cam_x+2*side_thick; 
+        screw_x = support_x/2-scw_r-                  scw_x;
         
-            make_chb(scw_y,screw_x,                 scafold_y, LRS);
+        scafold_y = scafold_y + WS_lens_y; //increase scafold deep accord distance of the lens in the PCB
+    
+        make_chb(scw_r,scw_y,screw_x,                 scafold_y, LRS);
+        }
+    
+    else if(camera == "RPIHQ"){
+        cam_x = HQ_cam_x;
+        cam_y = HQ_cam_y;
+        scw_x = HQ_scw_s + side_thick;
+        scw_y = HQ_scw_b + back_thick;
+        scw_r = r_scw_adapt; // intead of HQ_scw_r as we dont have the screws
+        
+        //support_y = HQ_hold_y + back_thick;
+        support_x = cam_x+2*side_thick; 
+        screw_x = cam_x/2-HQ_scw_s;
+        
+        scafold_y = scafold_y + HQ_lens_y;
+        make_chb(scw_r,scw_y,screw_x,                 scafold_y, LRS);
+    
         }
     
     else if(camera == "RPIV2"){
-            cam_x = RPIV2_cam_x;
-            cam_y = RPIV2_cam_y;
-            scw_x = V2_scw_s + side_thick;
-            scw_y = V2_scw_b + back_thick;
-            
-            support_x = cam_x+2*side_thick; 
-            screw_x = support_x/2-scw_r-                  scw_x;
-            
-            scafold_y = scafold_y + cam_y/2;
-            make_chb(scw_y,screw_x,                 scafold_y, LRS);
+        cam_x = RPIV2_cam_x;
+        cam_y = RPIV2_cam_y;
+        scw_x = V2_scw_s + side_thick;
+        scw_y = V2_scw_b + back_thick;
+        scw_r = V2_scw_r;
+    
+        support_x = cam_x+2*side_thick; 
+        screw_x = cam_x/2-V2_scw_s;
         
+        scafold_y = scafold_y + V2_lens_y;
+        //increase scafold deep accord distance of the lens in the PCB
+        make_chb(scw_r,scw_y,screw_x,                 scafold_y, LRS);
+    
         }
      
 }
@@ -259,18 +309,23 @@ module camera_mount(camera){
             hold_y = WS_hold_y;
             scw_y = WS_scw_b + back_thick;
             scw_x = WS_scw_s + side_thick;
-            scafold_y = scafold_y + cam_y/2;
+            scw_r = WS_scw_r;
+        
+        scafold_y = scafold_y + WS_lens_y;
         
         support_z = cam_z+bottom_thick;
         support_y = hold_y + back_thick;
-        support_x = cam_x+2*side_thick; 
+        support_x = cam_x+2*side_thick+sup_x_error; 
         
         
-        translate([0,-scafold_y/2 + support_y/2,scafold_z/2+support_z/2])
+        translate([0,(support_y-scafold_y)/2,scafold_z/2+support_z/2])
         difference(){
+            //Base parallelepiped
             cube([support_x,support_y,support_z], center=true);
+            //camera space
             translate([0,back_thick/2,-bottom_thick/2])
-            cube([cam_x,hold_y,cam_z], center=true);
+            cube([cam_x+sup_x_error,hold_y,cam_z], center=true);
+            //cable connector space
             cube([cam_x - 2*hold_x,support_y,support_z], center=true);
             
             //Screw holes
@@ -278,7 +333,61 @@ module camera_mount(camera){
             for (a =[screw_x,-screw_x]){
                 translate([a,-support_y/2+scw_r+scw_y ,0])
                 cylinder(h=support_z, r=scw_r, $fn=120, center =true);
-            }            
+                }            
+        }    
+    }
+    
+    else if(camera == "RPIHQ"){
+            cam_x = HQ_cam_x;
+            cam_y = HQ_cam_y;
+            cam_z = HQ_cam_z;
+            hold_x = HQ_hold_x;
+            hold_y = HQ_hold_y;
+            scw_y = HQ_scw_b + back_thick;
+            scw_x = HQ_scw_s + side_thick;
+            scw_r = HQ_scw_r;
+        
+        scafold_y = scafold_y + HQ_lens_y;
+        
+        support_z = cam_z+HQ_cch;
+        support_y = hold_y + back_thick;
+        support_x = cam_x+2*side_thick+sup_x_error; 
+        
+        //screw_x = support_x/2-scw_r-scw_x;
+        screw_x = cam_x/2-HQ_scw_s;
+        
+        translate([0,(support_y-scafold_y)/2,scafold_z/2+support_z/2+HQ_cch])
+        union(){
+            //camera PCB frame
+            difference(){
+                //Base parallelepiped
+                translate([0,0,-HQ_cch])
+                cube([support_x,support_y,support_z], center=true);
+                //camera space
+                translate([0,back_thick/2,0])
+                cube([cam_x+sup_x_error,hold_y,support_z], center=true);
+                //cable conector space
+                translate([0,0,-HQ_cch]) 
+                cube([cam_x - 2*hold_x,support_y,support_z], center=true);
+                //Screw holes
+                for (a =[screw_x,-screw_x]){
+                    translate([a,-support_y/2+scw_y, -HQ_cch])
+                    cylinder(h=3*support_z, r=r_scw_adapt, $fn=120, center =true);
+                }
+            }
+            /*/
+            //Screw hole adaptors
+            for (a =[screw_x,-screw_x]){
+                translate([a,-support_y/2+scw_y ,(cam_z-support_z)/2])
+                difference(){
+                    // to enter in PCB holes
+                    cylinder(h=cam_z, r=scw_r, $fn=120, center =true);
+                    // to make M2 holes
+                    cylinder(h=cam_z, r=r_scw_adapt, $fn=120, center =true);     
+                }
+        
+            }
+            */
         }    
     }
     
@@ -288,41 +397,45 @@ module camera_mount(camera){
             cam_z = RPIV2_cam_z;
             hold_x = V2_hold_x;
             hold_y = V2_hold_y;
-            base_space = RPIV2_connec_x+0.2;
+            base_space = V2_ccx +0.2;
             scw_y = V2_scw_b + back_thick;
             scw_x = V2_scw_s + side_thick;
-            scafold_y = scafold_y + cam_y/2;
+            scw_r = V2_scw_r;
         
-        support_z = cam_z+bottom_thick + RPIV2_connec_z;
+        scafold_y = scafold_y + V2_lens_y;
+        
+        support_z = cam_z+bottom_thick + V2_cch;
         support_y = hold_y + back_thick;
-        support_x = cam_x+2*side_thick;
+        support_x = cam_x+2*side_thick +sup_x_error;
         
-        difference(){ //this is to extend the central hole in the z axis
-        translate([0,-scafold_y/2 + support_y/2,scafold_z/2+support_z/2])
-        difference(){
-            cube([support_x,support_y,support_z], center=true);
-            // camera PCB hole
-            translate([0,back_thick/2,-bottom_thick/2 + RPIV2_connec_z/2])
-            cube([cam_x,hold_y,cam_z], center=true); 
-            // base hole
-            translate([0,0,-bottom_thick/2])
-            cube([base_space,support_y,support_z-bottom_thick], center=true); 
-            // camera hole
-            translate([0,0,(support_z-bottom_thick)/2])
-            cube([RPIV2_sensor_x,support_y,bottom_thick], center=true); 
-            
-            //Screw holes
-            screw_x = support_x/2-scw_r-scw_x;
-            for (a =[screw_x,-screw_x]){
-                translate([a,-support_y/2+scw_r+scw_y ,0])
-                cylinder(h=support_z, r=scw_r, $fn=120, center =true);
-            } 
+        sfs_ccy = V2_ccy + back_thick; //support free space for cable conector in y axis.
+        screw_x = cam_x/2-V2_scw_s;
+        //
+        translate([0,(support_y-scafold_y)/2,scafold_z/2+support_z/2+V2_cch])
+        union(){
+            //camera PCB frame
+            difference(){
+                //Base parallelepiped
+                translate([0,0,-V2_cch])
+                cube([support_x,support_y,support_z], center=true);
+                //camera space
+                translate([0,back_thick/2,0])
+                cube([cam_x+sup_x_error,hold_y,support_z], center=true);
+                //cable conector space
+                translate([0,(sfs_ccy-support_y)/2,-V2_cch]) 
+                cube([base_space,sfs_ccy,support_z], center=true);
+                //inter screw space
+                translate([0,(sfs_ccy)/2,-V2_cch]) 
+                cube([V2_iss,support_y -sfs_ccy,support_z], center=true);
+                
+                //Screw holes
+                for (a =[screw_x,-screw_x]){
+                    translate([a,-support_y/2+scw_y, -V2_cch])
+                    cylinder(h=3*support_z, r=r_scw_adapt, $fn=120, center =true);
+                }
+            }
         }
-    // extend the central square hole
-    translate([0,sca_deep/2,cam_z+ RPIV2_connec_z])
-    cube([scafold_x - 2*sca_arms_width,scafold_y - sca_deep,scafold_z], center=true);
-    }
-        
+    //
     }
     
 }
@@ -458,17 +571,20 @@ module led_ring_diffusor_out(){
 
 module led_ring_diffusor_in(){
     // To create the inner ring to support the diffusor
+    in_corr = 0.1;// internal hole radius looseness
+    rchole = rrei + in_corr; // corrected internal hole radius
+    
     rotate([180,0,0])
     difference(){
         //base cylinder
-        cylinder($fn = 100, h=dhi_h+dh_zt, r=rrei+dhi_rt+dhi_sheet, center=true);
+        cylinder($fn = 100, h=dhi_h+dh_zt, r=rchole+dhi_rt+dhi_sheet, center=true);
         //central hole
-        cylinder($fn = 100, h=dhi_h+dh_zt, r=rrei, center=true);
+        cylinder($fn = 100, h=dhi_h+dh_zt, r=rchole+in_corr, center=true);
         //diffusor support sheet
         translate([0,0,dh_zt/2])
         difference(){
-            cylinder($fn = 100, h=dhi_h, r=rrei+dhi_rt+dhi_sheet, center=true);
-            cylinder($fn = 100, h=dhi_h, r=rrei+dhi_rt, center=true);
+            cylinder($fn = 100, h=dhi_h, r=rchole+dhi_rt+dhi_sheet, center=true);
+            cylinder($fn = 100, h=dhi_h, r=rchole+dhi_rt, center=true);
         }    
     }
     
@@ -530,6 +646,7 @@ module led_ring(camera){
 }
 
 module display_camera(camera){
+    lcr = 2; // radius of the cylinder to indicate the center of the lens
     
     if(camera == "waveshare"){
         
@@ -538,6 +655,7 @@ module display_camera(camera){
         cam_z = waveshare_cam_z;
         scw_x = WS_scw_s + side_thick;
         scw_y = WS_scw_b + back_thick;
+        scw_r = WS_scw_r;
         
         support_x = cam_x+2*side_thick; 
         screw_x = support_x/2-scw_r-                  scw_x;
@@ -545,19 +663,59 @@ module display_camera(camera){
         
         translate([0,(cam_y-scafold_y)/2+ back_thick,(cam_z+scafold_z)/2])
         union(){
+            // PCB
             cube([cam_x,cam_y,cam_z],center = true);
-            cylinder(h=2*cam_z, r=2, center=true);
+            //Lens center
+            cylinder(h=2*cam_z, r=lcr, center=true);
             //translate([0,0,(scafold_z/2)+cam_z+2])
             //cube([1.5*scafold_x,1,1],center = true);
-            }
         }
-
+    }
+    else if(camera == "RPIHQ"){
+        cam_x = HQ_cam_x;
+        cam_y = HQ_cam_y;
+        cam_z = HQ_cam_z;
+        scw_x = HQ_scw_s + side_thick;
+        scw_y = HQ_scw_b + back_thick;
+        scw_r = HQ_scw_r;
+        
+        support_x = cam_x+2*side_thick; 
+        screw_x = support_x/2-scw_r-                  scw_x;
+        scafold_y = scafold_y + cam_y/2;
+        
+        translate([0,(cam_y-scafold_y)/2+ back_thick,(cam_z+scafold_z)/2+HQ_cch])
+        union(){
+            //PCB
+            difference(){
+                // base PCB
+                cube([cam_x,cam_y,cam_z],center = true);
+                //Screw holes
+                for (sx =[cam_x/2-HQ_scw_s,HQ_scw_s-cam_x/2]){
+                    for (sy =[cam_y/2-HQ_scw_b,HQ_scw_b-cam_y/2]){                    translate([sx,sy,0])               
+                        cylinder(h=cam_z, r=scw_r, $fn=120, center =true);     
+                        }
+                }
+            }
+            // Lens Base in the PCB
+            cylinder(h=2*cam_z, r=HQ_blr);
+            //Lens center
+            translate([0,0,cam_z])
+            cylinder(h=4*cam_z, r=lcr, center =true);
+            //cable connector
+            translate([0,(HQ_hold_y-cam_y)/2,-(cam_z+HQ_cch)/2])
+            cube([cam_x-2*(HQ_hold_x),HQ_hold_y,HQ_cch], center = true);
+        }
+        
+    }
+    
+    
     else if(camera == "RPIV2"){
         cam_x = RPIV2_cam_x;
         cam_y = RPIV2_cam_y;
         cam_z = RPIV2_cam_z;
         scw_x = V2_scw_s + side_thick;
         scw_y = V2_scw_b + back_thick;
+        scw_r = V2_scw_r;
         
         support_x = cam_x+2*side_thick; 
         screw_x = support_x/2-scw_r-                  scw_x;
@@ -565,26 +723,39 @@ module display_camera(camera){
         
         translate([0,(cam_y-scafold_y)/2+ back_thick,(cam_z+scafold_z)/2])
         union(){
-            cube([cam_x,cam_y,cam_z],center = true);
-            cylinder(h=2*cam_z, r=2, center=true);
-            //translate([0,0,(scafold_z/2)+cam_z+2])
-            //cube([1.5*scafold_x,1,1],center = true);
+        //PCB
+            difference(){
+                // base PCB
+                cube([cam_x,cam_y,cam_z],center = true);
+                //Screw holes
+                for (sx =[cam_x/2-V2_scw_s,V2_scw_s-cam_x/2]){
+                    for (sy =[cam_y/2-V2_scw_f,V2_scw_b-cam_y/2]){                    translate([sx,sy,0])               
+                        cylinder(h=cam_z, r=scw_r, $fn=120, center =true);     
+                        }
+                }
             }
-        
+            //Lens center
+            translate([0,-cam_y/2+V2_lens_y,0])
+            cylinder(h=2*cam_z, r=lcr, center=true);
+            //cable connector
+            translate([0,(V2_ccy-cam_y)/2,-(cam_z+V2_cch)/2])
+            cube([V2_ccx,V2_ccy,V2_cch], center = true);
         }
     }
+}
 
 //uncomment the camera you pretend to use
 
-camera = "waveshare";
-//camera = "RPIV2";
+//camera = "waveshare";
+camera = "RPIV2";
+//camera = "RPIHQ";
 LRS = 1; // 1 to add LED Ring Support, 0 to don't.
 
 
-//cam_holder_base(camera,LRS);
-//camera_mount(camera);
-
-//*/
+cam_holder_base(camera,LRS);
+camera_mount(camera);
+//led_ring_diffusor_in();
+/*
 ztrans = hre/2+arm_z; 
 translate([0,0,ztrans])
 union(){
@@ -598,7 +769,16 @@ union(){
     led_ring_diffusor_in();
     }
 }
-//*/   
+*/   
 //uncomment next modules to display the elements
 //display_camera(camera);
 //led_ring(camera);
+
+/*
+union(){
+    translate([0,12.5,-3.65])
+    camera_mount(camera);
+    cube([30,15,1], center=true);
+    
+    }
+   */
